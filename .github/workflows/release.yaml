@@ -26,6 +26,7 @@ jobs:
         git config --global user.name "mohamedragab2024"
         git clone https://${USERNAME}:${ACCESS_TOKEN}@github.com/mohamedragab2024/k8s-lessons.git
         cp -r k8s-lessons/charts/* charts/
+        git add .
         git commit -m "Create a new version"
         git push origin env/prod
     
