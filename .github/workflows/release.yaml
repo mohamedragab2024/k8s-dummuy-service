@@ -18,8 +18,11 @@ jobs:
         
     - name: clone base charts
       shell: bash
+      env:
+        USERNAME: mohamedragab2024
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
-        git clone git@github.com:mohamedragab2024/k8s-lessons.git 
+        git clone https://${USERNAME}:${ACCESS_TOKEN}@github.com/mohamedragab2024/k8s-lessons.git
         cp -r k8s-lessons/charts/* charts/
         git commit -m "Create a new version"
         git push origin env/prod
