@@ -9,6 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       name: Checkout
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
 
     - name: create env branch
       shell: bash
@@ -27,7 +29,6 @@ jobs:
         git clone https://${USERNAME}:${ACCESS_TOKEN}@github.com/mohamedragab2024/k8s-lessons.git
         cp -r k8s-lessons/charts/* charts/
         rm -rf k8s-lessons
-        git remote set-url origin https://${USERNAME}:${ACCESS_TOKEN}@github.com/${{ github.repository }}
         git add .
         git commit -m "Create a new version"
         git push origin env/prod
