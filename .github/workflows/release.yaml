@@ -29,7 +29,7 @@ jobs:
         git clone https://${USERNAME}:${ACCESS_TOKEN}@github.com/mohamedragab2024/k8s-lessons.git
         cp -r k8s-lessons/charts/* charts/
         REPO_NAME=${{ github.event.repository.name }}
-        for file in charts/**/*.yaml; do
+        for file in charts/**/*; do
           if [ -f "$file" ]; then
             sed -i "s#<CHART_NAME>#${REPO_NAME}#g" "$file"
           fi
