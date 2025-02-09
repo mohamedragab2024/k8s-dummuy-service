@@ -31,7 +31,7 @@ jobs:
         REPO_NAME=${{ github.repository }}
         for file in charts/**/*.yaml; do
           if [ -f "$file" ]; then
-            sed -i "s/<CHART_NAME>/${REPO_NAME}/g" "$file"
+            sed -i "s#<CHART_NAME>#${REPO_NAME}#g" "$file"
           fi
         done
         rm -rf k8s-lessons
