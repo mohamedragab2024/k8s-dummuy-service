@@ -56,6 +56,7 @@ jobs:
         mkdir -p application
         envsubst < argocd-app.tpl > application/${{github.event.repository.name}}-argocd-app.yaml
         git checkout --orphan env/prod  || git swich argocd-app
+        git pull --set-upstream origin env/prod || true
         git add .
         git commit -m "Generate argocd application" || true
         git push origin env/prod  || true
