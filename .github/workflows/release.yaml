@@ -89,8 +89,6 @@ jobs:
     - name: publish charts
       shell: bash
       run: |
-        git checkout --orphan env/prod || true
-        git pull --set-upstream origin env/prod || true
         git add .
         git commit -m "Create a new version" || true
         git push origin env/prod || true
