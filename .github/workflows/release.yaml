@@ -65,7 +65,7 @@ jobs:
         mkdir -p application
         cat << EOF > application/argocd.tpl
         apiVersion: argoproj.io/v1alpha1
-       EOF
+        EOF
 
     - name: publish charts
       shell: bash
