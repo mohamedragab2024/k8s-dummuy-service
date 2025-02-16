@@ -47,7 +47,7 @@ jobs:
     - name: create env branch
       shell: bash
       run: |
-        git checkout -b --orphan env/prod  && git rm -rf . || git swich env/prod
+        git checkout --orphan env/prod  && git rm -rf . || git swich env/prod
         git pull --set-upstream origin env/prod || true
         rm -rf charts
         rm -rf application
@@ -91,7 +91,7 @@ jobs:
       run: |
         git add .
         git commit -m "Create a new version" || true
-        git push origin env/prod || true
+        git push --set-upstream origin env/prod || true
 
 
 
