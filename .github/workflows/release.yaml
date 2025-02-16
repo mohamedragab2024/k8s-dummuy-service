@@ -38,8 +38,8 @@ jobs:
 
         rm -rf k8s-lessons
         git add .
-        git commit -m "Create a new version"
-        git push origin env/prod
+        git commit -m "Create a new version" || true
+        git push origin env/prod || true
 
     - uses: actions/checkout@v4
       name: Checkout
@@ -56,8 +56,8 @@ jobs:
         envsubst < argocd-app.tpl > application/${{github.event.repository.name}}-argocd-app.yaml
         git checkout --orphan env/prod  || git swich argocd-app
         git add .
-        git commit -m "Generate argocd application"
-        git push origin env/prod
+        git commit -m "Generate argocd application" || true
+        git push origin env/prod  || true
 
 # Step: setup k8s information for GHA
 # Step: Install argocd client
