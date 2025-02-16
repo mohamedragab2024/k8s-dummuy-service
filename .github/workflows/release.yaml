@@ -89,6 +89,8 @@ jobs:
     - name: publish charts
       shell: bash
       run: |
+        git config --global user.email "m.ragab6010@gmail.com"
+        git config --global user.name "mohamedragab2024"
         git add .
         git commit -m "Create a new version" || true
         git push --set-upstream origin env/prod || true
