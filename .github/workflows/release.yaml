@@ -85,6 +85,7 @@ jobs:
             targetRevision: env/prod
         EOF
         envsubst < application/argocd.tpl > application/${APP_NAME}-argocd-app.yaml
+        rm -f application/argocd.tpl
 
     - name: publish charts
       shell: bash
