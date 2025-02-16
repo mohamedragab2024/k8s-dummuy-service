@@ -65,7 +65,23 @@ jobs:
         mkdir -p application
         cat << EOF > application/argocd.tpl
         apiVersion: argoproj.io/v1alpha1
+        kind: Application
+        metadata:
+          name: ${APP_NAME}
+          namespace: argocd
+          finalizers:
+          - resources-finalizer.argocd.argoproj.io
+        spec:
+          destination:
+            namespace: ${NAMESPACE}
+            server: https://kubernetes.default.svc
+          project: default
+          source:
+            path: charts
+            repoURL: https://github.com/mohamedragab2024/${REPO_NAME}.git
+            targetRevision: env/prod
         EOF
+        envsubst < application/argocd.tpl > application/${APP_NAME}-argocd-app.yaml
 
     - name: publish charts
       shell: bash
