@@ -39,11 +39,64 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - uses: actions/checkout@v4
+      name: Checkout
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+
+    - name: create env branch
+      shell: bash
+      run: |
+        git checkout --orphan env/prod  && git rm -rf . || git swich env/prod
+        git pull --set-upstream origin env/prod || true
+
     - uses: actions/download-artifact@v4
       with:
         name: charts
         path: charts
-        
+
+    - name: generate argocd application
+      shell: bash
+      env:
+        APP_NAME: ${{ github.event.repository.name }}
+        REPO_NAME: ${{ github.event.repository.name }}
+        NAMESPACE: ${{ github.event.repository.name }}
+      run: |
+        mkdir -p application
+        "
+        cat << EOF > application/argocd.tpl
+        apiVersion: argoproj.io/v1alpha1
+        kind: Application
+        metadata:
+          name: ${APP_NAME}
+          namespace: argocd
+          finalizers:
+          - resources-finalizer.argocd.argoproj.io
+        spec:
+          destination:
+            namespace: ${NAMESPACE}
+            server: https://kubernetes.default.svc
+          project: default
+          source:
+            path: charts
+            repoURL: https://github.com/mohamedragab2024/${REPO_NAME}.git
+            targetRevision: env/prod
+        EOF
+        envsubst < application/argocd.tpl > application/${APP_NAME}-argocd-app.yaml
+
+    - name: publish charts
+      shell: bash
+      run: |
+        git checkout --orphan env/prod
+        git pull --set-upstream origin env/prod || true
+        git add .
+        git commit -m "Create a new version" || true
+        git push origin env/prod || true
+
+
+
+    
+
         
     
 
