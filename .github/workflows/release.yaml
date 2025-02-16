@@ -54,7 +54,7 @@ jobs:
       with:
         name: charts
         path: charts
-
+        
     - name: generate argocd application
       shell: bash
       env:
