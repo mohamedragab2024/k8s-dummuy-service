@@ -62,6 +62,7 @@ jobs:
         REPO_NAME: ${{ github.event.repository.name }}
         NAMESPACE: ${{ github.event.repository.name }}
       run: |
+        ls
         mkdir -p application
         cat << EOF > application/argocd.tpl
         apiVersion: argoproj.io/v1alpha1
