@@ -54,7 +54,7 @@ jobs:
       with:
         name: charts
         path: charts
-        
+
     - name: generate argocd application
       shell: bash
       env:
@@ -63,7 +63,6 @@ jobs:
         NAMESPACE: ${{ github.event.repository.name }}
       run: |
         mkdir -p application
-        "
         cat << EOF > application/argocd.tpl
         apiVersion: argoproj.io/v1alpha1
         kind: Application
