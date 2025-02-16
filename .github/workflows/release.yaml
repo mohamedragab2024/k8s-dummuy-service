@@ -49,6 +49,7 @@ jobs:
       run: |
         git checkout --orphan env/prod  && git rm -rf . || git swich env/prod
         git pull --set-upstream origin env/prod || true
+        rm -rf .
 
     - uses: actions/download-artifact@v4
       with:
