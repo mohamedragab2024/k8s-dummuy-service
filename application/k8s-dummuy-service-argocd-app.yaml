@@ -14,6 +14,9 @@ spec:
     path: charts
     repoURL: https://github.com/mohamedragab2024/k8s-dummuy-service.git
     targetRevision: env/prod
+    helm:
+      valueFiles:
+        - charts/values-live.yaml
   syncPolicy:
     automated:
       prune: true
