@@ -83,6 +83,13 @@ jobs:
             path: charts
             repoURL: https://github.com/mohamedragab2024/${REPO_NAME}.git
             targetRevision: env/prod
+          syncPolicy:
+            automated:
+              prune: true
+              selfHeal: true
+              allowEmpty: true
+            syncOptions:
+              - CreateNamespace=true
         EOF
         envsubst < application/argocd.tpl > application/${APP_NAME}-argocd-app.yaml
         rm -f application/argocd.tpl
