@@ -14,3 +14,10 @@ spec:
     path: charts
     repoURL: https://github.com/mohamedragab2024/k8s-dummuy-service.git
     targetRevision: env/prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
