@@ -83,6 +83,9 @@ jobs:
             path: charts
             repoURL: https://github.com/mohamedragab2024/${REPO_NAME}.git
             targetRevision: env/prod
+            helm:
+              valueFiles:
+                - charts/values-live.yaml
           syncPolicy:
             automated:
               prune: true
