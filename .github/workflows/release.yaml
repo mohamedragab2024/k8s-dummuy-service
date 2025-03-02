@@ -4,37 +4,13 @@ on:
    branches:
      - main
 jobs:
-  build:
+  build-publish-charts:
     uses: ahmdelemam/svc-ci-bootstrap/.github/workflows/resuable-build-chart.yaml@main
     with:
       service_name: ${{ github.event.repository.name }}
+      namespace: ${{ github.event.repository.name }}
     secrets:
       ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: publish
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #     name: Checkout
-  #     with:
-  #       token: ${{ secrets.ACCESS_TOKEN }}
-  #       ref: env/prod
-  #   - name: Setup ArgoCD CLI
-  #     shell: bash
-  #     run: |
-  #       curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v2.10.0/argocd-linux-amd64
-  #       chmod +x argocd-linux-amd64
-  #       sudo mv argocd-linux-amd64 /usr/local/bin/argocd   
-  #   - name: Create ArgoCD application
-  #     shell: bash
-  #     run: |
-  #       argocd login 212.2.242.173 --username admin --password 5GYhiX9Op0g3AX5t --insecure --grpc-web
-  #       argocd app create -f application/${{github.event.repository.name}}-argocd-app.yaml || true
-  #   - name: Sync ArgoCD application
-  #     shell: bash
-  #     run: |
-  #       argocd app sync ${{ github.event.repository.name }}
 
         
 
