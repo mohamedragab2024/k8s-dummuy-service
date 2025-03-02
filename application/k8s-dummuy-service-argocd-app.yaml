@@ -16,7 +16,7 @@ spec:
     targetRevision: env/prod
     helm:
       valueFiles:
-        - charts/values-live.yaml
+        - values-live.yaml
   syncPolicy:
     automated:
       prune: true
