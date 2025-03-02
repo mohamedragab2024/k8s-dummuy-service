@@ -5,6 +5,7 @@ service:
 deployment:
   enabled: true
   replicas: 1
+  containerPort: 80
   image:
     repository: nginx
     tag: latest
