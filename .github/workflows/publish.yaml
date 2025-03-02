@@ -1,0 +1,14 @@
+name: release
+on:
+ push:
+   tags:
+     - '*'
+jobs:
+  publish:
+    uses: ahmdelemam/svc-ci-bootstrap/.github/workflows/resuable-publish-chart.yaml@main
+    with:
+      service_name: ${{ github.event.repository.name }}
+      namespace: ${{ github.event.repository.name }}
+    secrets:
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
