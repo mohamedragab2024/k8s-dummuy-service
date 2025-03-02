@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    uses: ahmdelemam/svc-ci-bootstrap/.github/workflows/resuable-build-chart.yaml
+    uses: ahmdelemam/svc-ci-bootstrap/.github/workflows/resuable-build-chart.yaml@main
 
   publish:
     runs-on: ubuntu-latest
