@@ -180,7 +180,7 @@ jobs:
     - name: Create ArgoCD application
       shell: bash
       run: |
-        argocd login 212.2.243.138 --username admin --password 8eN1LJZo1nlvon7M --insecure --grpc-web
+        argocd login 212.2.242.173 --username admin --password 5GYhiX9Op0g3AX5t --insecure --grpc-web
         argocd app create -f application/${{github.event.repository.name}}-argocd-app.yaml || true
     - name: Sync ArgoCD application
       shell: bash
